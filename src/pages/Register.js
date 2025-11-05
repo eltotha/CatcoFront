@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import CatcoLogo from "../assets/CatcoLogo.png";
-import {BtnConfirm, ButtonContainer, Card, CheckboxContainer, FormGroup, BackGround, Header, Logo, TxtBox} from "../components/Styles";
+import { BackGround } from "../components/Styles/Body";
+import {BtnConfirm, ButtonContainer, Card, CheckboxContainer, FormGroup, Header, Logo, TxtBox} from "../components/Styles/Login_Styles";
 
 function Register (){
 
     const handleExternalRedirect = () => {
-    window.location.href = "/";
+        window.location.href = "/";
     };
     
 

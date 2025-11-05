@@ -1,3 +1,5 @@
+import SideBars from "../components/SideBars";
+import { BackGround } from "../components/Styles/Body";
 
 
 function Home (){
@@ -5,7 +7,13 @@ function Home (){
 
     return (
 
-        <a>s</a>
+        <BackGround>
+            <SideBars>
+                
+            </SideBars>
+
+            
+        </BackGround>
 
         
 

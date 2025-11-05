@@ -1,16 +1,6 @@
 import styled from "styled-components";
 
 //Estilos del Login y Register
-
-export const BackGround = styled.div`
-  background-color: #0B2C53;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-`;
-
 export const Card = styled.div `
       
     font-family: 'Quicksand', sans-serif;
@@ -181,8 +171,3 @@ export const BtnConfirm = styled.button`
     background: none;
   }
 `;
-
-//Estilos del Home
-
-
-
