@@ -1,32 +1,51 @@
-import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import CatcoLogo from "../assets/CatcoLogo.png";
 import { BackGround } from "../components/Styles/Body";
-import {BtnConfirm, ButtonContainer, Card, CheckboxContainer, FormGroup, Header, Logo, TxtBox} from "../components/Styles/Login_Styles";
+import { BtnConfirm, ButtonContainer, Card, FormGroup, Header, Logo, TxtBox } from "../components/Styles/Login_Styles";
 
-function Register (){
+// Colores de la paleta
+const PRIMARY_DARK_BLUE = "#14213d"; // Azul Oxford (Elegante, profesional)
+const ACCENT_ORANGE = "#fca311";     // Naranja Web (CTA, Energía)
+const WHITE = "#ffffff";             // Lo único blanco
+const SECONDARY_GREY_BLUE = "#457b9d"; // Azul Medio/Gris
 
-    const handleExternalRedirect = () => {
-        window.location.href = "/";
+function Register() {
+    const navigate = useNavigate();
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Aquí iría la lógica de registro
+        navigate("/");
     };
-    
 
-    return(
-
-       <BackGround>
-            <Card>
+    return (
+        <BackGround style={{ 
+            /* 1. FONDO CON DEGRADADO AZUL/GRIS OSCURO */
+            background: `linear-gradient(135deg, ${PRIMARY_DARK_BLUE} 0%, #0c1a2f 100%)`, 
+            display: 'flex', 
+            justifyContent: 'center', 
+            alignItems: 'center' 
+        }}> 
+            {/* Se asume que Card se importa de Login_Styles, si no existe ahí, se debe definir aquí */}
+            <Card style={{
+                /* 2. LO ÚNICO BLANCO: La tarjeta */
+                background: WHITE,
+                borderRadius: '1.5rem', /* Borde más redondeado */
+                boxShadow: '0 10px 20px rgba(0, 0, 0, 0.3)' /* Sombra más fuerte para resaltar */
+            }}>
                 <Header>
-                    <Logo src={CatcoLogo}/>
-                    <label style={{ textSizeAdjust: "5px" }}>Registro de Cuenta</label>
+                    <Logo src={CatcoLogo} alt="Catco Logo" />
+                    <label style={{ fontSize: "1.5rem", fontWeight: "bold", color: PRIMARY_DARK_BLUE, display: "block", marginTop: "0.5rem" }}>
+                        Registro de Cuenta
+                    </label>
                 </Header>
 
-                <form>
+                <form onSubmit={handleSubmit}>
                     <FormGroup>
                         <TxtBox
                             type="text"
                             name="Username"
                             placeholder="Usuario"
-                            //Value={Username}
                             required
                         />
                     </FormGroup>
@@ -36,8 +55,6 @@ function Register (){
                             type="password"
                             name="Password"
                             placeholder="Contraseña"
-                            //value={password}
-                            //onChange={(e) => setPassword(e.target.value)}
                             required
                         />
                     </FormGroup>
@@ -47,29 +64,22 @@ function Register (){
                             type="password"
                             name="ConfirmPassword"
                             placeholder="Confirmar Contraseña"
-                            //value={confirmPassword}
-                            //onChange={(e) => setConfirmPassword(e.target.value)}
                             required
                         />
                     </FormGroup>
 
                     <ButtonContainer>
-                        <BtnConfirm type="submit" onClick={handleExternalRedirect}>Registrarse</BtnConfirm>
+                        <BtnConfirm type="submit" style={{ backgroundColor: ACCENT_ORANGE, color: PRIMARY_DARK_BLUE, fontWeight: '600' }}>Registrarse</BtnConfirm>
                     </ButtonContainer>
 
-
-                    <footer style={{ display: "flex", justifyContent: "center", marginTop: "30px"}}>
-                    Ya tienes cuenta?
-                    <Link to="/" style={{ color: "#FF9900" }}> Inicia Sesión!</Link>
+                    <footer style={{ display: "flex", justifyContent: "center", marginTop: "30px", fontSize: "0.875rem", color: SECONDARY_GREY_BLUE }}>
+                        Ya tienes cuenta?
+                        <Link to="/" style={{ color: ACCENT_ORANGE, marginLeft: "0.25rem" }}> Inicia Sesión!</Link>
                     </footer>
-
                 </form>
             </Card>
-
         </BackGround>
-
     );
 }
-
 
 export default Register;
