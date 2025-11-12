@@ -45,7 +45,7 @@ const StatNumber = styled.p`
   font-size: 1.875rem;
   font-weight: bold;
   margin: 0.5rem 0 0 0;
-  color: ${props => props.color || PRIMARY_DARK_BLUE}; 
+  color: ${props => props.color || TEXT_DARK}; 
 `;
 
 const StatTitle = styled.h3`
