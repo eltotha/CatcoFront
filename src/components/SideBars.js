@@ -90,6 +90,7 @@ const SideBars = ({ isOpen, toggleSidebar, activeView, setActiveView, onLogout }
     { name: 'Dashboard', id: 'dashboard', icon: '📊' },
     { name: 'Inventario', id: 'inventory', icon: '📦' },
     { name: 'Presupuesto', id: 'budget', icon: '💰' },
+    { name: 'Ventas', id: 'sales', icon: '🛒' },
   ];
 
   return (

@@ -6,8 +6,9 @@ import styled from 'styled-components';
 // --- Paleta de Colores Elegante y Profesional ---
 const PRIMARY_DARK_BLUE = '#14213d'; // Azul Oxford (Principal, texto oscuro)
 const ACCENT_ORANGE = '#fca311';     // Naranja Web (Acento, CTA)
-const WHITE = '#ffffff';             // Fondo de tarjetas y campos
-const TEXT_DARK = PRIMARY_DARK_BLUE; // Texto principal
+const CARD_BACKGROUND = '#29365bff';  //Fondo de tarjetas
+const CARD_TEXT = '#ffffff';        //Texto de las tarjetas
+const TEXT_DARK = '#ffffff93'; // Texto principal
 const TEXT_SECONDARY = '#457b9d';    // Azul/Gris secundario
 const DANGER_RED = '#dc2626';        // Rojo para eliminar
 const SUCCESS_GREEN = '#059669';     // Verde para el texto "disponible" del presupuesto
@@ -32,7 +33,8 @@ const GridContainer = styled.div`
 
 const Card = styled.div`
   /* 2. LO ÚNICO BLANCO: La tarjeta */
-  background: ${WHITE};
+  background: ${CARD_BACKGROUND};
+  color: ${CARD_TEXT};
   padding: 1.5rem;
   border-radius: 1rem; /* Borde más redondeado */
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Sombra más pronunciada */
@@ -50,14 +52,14 @@ const StatTitle = styled.h3`
   font-size: 1.125rem;
   font-weight: 600;
   margin: 0 0 0.5rem 0;
-  color: ${TEXT_SECONDARY}; 
+  color: inherit; 
 `;
 
 const SectionTitle = styled.h2`
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0 0 1rem 0;
-  color: ${WHITE}; /* Título de sección en blanco para el fondo oscuro */
+  color: ${CARD_TEXT}; /* Título de sección en blanco para el fondo oscuro */
 `;
 
 
@@ -110,7 +112,7 @@ const Button = styled.button`
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
-  background: ${WHITE}; /* 2. LO ÚNICO BLANCO: La tabla */
+  background: ${CARD_BACKGROUND}; /* 2. LO ÚNICO BLANCO: La tabla */
   border-radius: 1rem; /* Borde más redondeado */
   overflow: hidden;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
@@ -118,13 +120,14 @@ const Table = styled.table`
 `;
 
 const TableHeader = styled.thead`
-  background-color: #f3f4f6; /* Fondo de cabecera gris claro */
+  background-color: ${CARD_BACKGROUND}; /* Fondo de cabecera gris claro */
+  color; inherit
 `;
 
 const TableRow = styled.tr`
   border-bottom: 1px solid #e5e5e5;
   &:hover {
-    background-color: #f7f7f7; 
+    background-color: #f7f7f720; 
   }
 `;
 
@@ -133,7 +136,7 @@ const TableHeaderCell = styled.th`
   text-align: left;
   font-size: 0.875rem; /* Fuente ligeramente más grande */
   font-weight: 700; 
-  color: ${PRIMARY_DARK_BLUE}; 
+  color: ${CARD_TEXT}; 
   text-transform: uppercase;
   letter-spacing: 0.05em;
 `;
@@ -141,7 +144,7 @@ const TableHeaderCell = styled.th`
 const TableCell = styled.td`
   padding: 1rem 1.5rem;
   font-size: 0.875rem;
-  color: ${props => props.color || TEXT_DARK}; 
+  color: ${props => props.color || 'inherit'}; 
 `;
 
 const ActionButton = styled.button`
@@ -157,6 +160,57 @@ const ActionButton = styled.button`
     text-decoration: underline;
     opacity: 0.9;
   }
+`;
+
+//Contenido de Registra ventas
+const ProductImage = styled.img`
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+`;
+
+const ProductName = styled.h3`
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: ${CARD_TEXT};
+  text-align: center;
+  margin-bottom: 1rem;
+`;
+
+const QuantityControl = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+`;
+
+const QuantityButton = styled.button`
+  background-color: ${ACCENT_ORANGE};
+  color: ${PRIMARY_DARK_BLUE};
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background-color: #e88d00;
+  }
+`;
+
+const QuantityText = styled.span`
+  color: ${CARD_TEXT};
+  font-size: 1.125rem;
+  min-width: 20px;
+  text-align: center;
+  font-weight: 500;
 `;
 
 const Home = ({ onLogout }) => {
@@ -322,6 +376,57 @@ const Home = ({ onLogout }) => {
     </div>
   );
 
+  const SalesContent = () => {
+    const [sales, setSales] = useState([
+      { id: 1, name: 'Laptop Dell XPS', image: 'https://i5.walmartimages.com/asr/df471863-0fd7-49ab-8585-2585245b1b24.fe6dc231ec9cd6b9862bd54d5933e13f.jpeg', sold: 0 },
+      { id: 2, name: 'Mouse Inalámbrico', image: 'https://sicsa.com.ni/wp-content/uploads/2025/04/1783_728.jpg', sold: 0 },
+      { id: 3, name: 'Monitor 24"', image: 'https://www.almacenestropigas.com/media/catalog/product/4/5/459351800010_1.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=700&width=700&canvas=700:700', sold: 0 },
+    ]);
+
+    const handleIncrease = (id) => {
+      setSales(prev =>
+        prev.map(item =>
+          item.id === id ? { ...item, sold: item.sold + 1 } : item
+        )
+      );
+    };
+
+    const handleDecrease = (id) => {
+      setSales(prev =>
+        prev.map(item =>
+          item.id === id && item.sold > 0 ? { ...item, sold: item.sold - 1 } : item
+        )
+      );
+    };
+
+    const handleRegisterSale = (id) => {
+      const product = sales.find(p => p.id === id);
+      alert(`Venta registrada: ${product.sold} unidades de ${product.name}`);
+    };
+
+    return(
+      <div>
+        <SectionTitle>Registrar Ventas</SectionTitle>
+        <GridContainer>
+          {sales.map(product => (
+            <Card key={product.id}>
+              <ProductImage src={product.image} alt={product.name} />
+              <ProductName>{product.name}</ProductName>
+              <QuantityControl>
+                <QuantityButton onClick={() => handleDecrease(product.id)}>-</QuantityButton>
+                <QuantityText>{product.sold}</QuantityText>
+                <QuantityButton onClick={() => handleIncrease(product.id)}>+</QuantityButton>
+              </QuantityControl>
+              <Button onClick={() => handleRegisterSale(product.id)}>
+                Registrar Venta
+              </Button>
+            </Card>
+          ))}
+        </GridContainer>
+      </div>
+    );
+  };
+
   const renderContent = () => {
     switch (activeView) {
       case 'dashboard':
@@ -330,6 +435,8 @@ const Home = ({ onLogout }) => {
         return <InventoryContent />;
       case 'budget':
         return <BudgetContent />;
+      case 'sales':
+      return <SalesContent />;
       default:
         return <DashboardContent />;
     }
